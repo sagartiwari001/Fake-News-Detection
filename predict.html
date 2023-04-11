@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+                                <!-- Run `pip install -r requirements.txt` -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection</title>
+    <link rel="icon" href="../static/logo.svg">
+</head>
+<style>
+    body
+{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(81, 81, 141) 25%, rgb(134, 80, 132) 100%);
+}
+    header img {
+        position: absolute;
+        height: 45px;
+        width: 45px;
+        top: 1.5em;
+        left: 2.5em;
+
+    }
+
+    header h2 {
+        position: relative;
+        font-size: 24px;
+        font-family: 'Times New Roman', Times, serif;
+        left: 4.6em;
+        top: 0.6em;
+        color: slateblue;
+    }
+
+    hr {
+        position: relative;
+        top: 1em;
+        height: 1px;
+        background-color: slateblue;
+    }
+
+    .left {
+        width: 40%;
+        height:30%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .left h1 {
+        position: absolute;
+        top: 3.3em;
+        left: 2.1em;
+        font-size: 30px;
+        font-family: sans-serif;
+        color: slateblue;
+    }
+
+    .left p {
+        position: relative;
+        font-size: 26px;
+        font-family: 'Times New Roman', Times, serif;
+        top: 3.4em;
+        left: 2em;
+        color: whitesmoke;
+
+    }
+
+    .left textarea {
+        position: relative;
+        top: 4em;
+        height: 3em;
+        width: 13em;
+        left: 2.5em;
+    }
+
+    .left button {
+        position: relative;
+        top: 8.2em;
+        left: 5.5em;
+        height: 4em;
+        width: 22em;
+        background-color: rgb(65, 65, 190);
+        color: white;
+        border: none;
+        border-radius: 5.4px;
+        cursor: pointer;
+    }
+
+ 
+    .results
+    {
+        position: relative;
+        top: 7em;
+        left: 4em;
+    }
+
+
+    .right img {
+        position: relative;
+        left: 40em;
+        top: -25em;
+        height: 35em;
+        width: 35em;
+       
+     }
+</style>
+
+<body>
+    <header>
+        <img src="../static/logo.svg" alt="" srcset="">
+        <h2>Fake News 📰 Detection</h2>
+    </header>
+    <hr>
+   
+        <div class="left">
+            <h1>Fake News 📰 Detection</h1>
+            <p>This advanced python project of detecting fake news deals with fake and real
+                news. Using sklearn, we build a Tfidf Vectorizer on our dataset. Then, we initialize a PassiveAggressive
+                Classifier and fit the model. In the end, the accuracy score and the confusion matrix tell us how well
+                our
+                model fares.</p>
+                <form action="{{ url_for('predict')}}" method="POST">
+                    <textarea  name="message" rows="6" cols="50" required="required" style="font-size: 18pt"></textarea>
+                   
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            
+                        <div class="results">
+            
+                {% if prediction == ['FAKE']%}
+                <h2 style="color:red;">Looking Spam ⚠️ News 📰 </h2>
+                {% elif prediction == ['REAL']%}
+                            <h2 style="color:green;"><b>Looking Real News 📰</b></h2>
+                {% endif %}
+            
+                </div>
+            </form>
+           
+        </div>
+
+        <div class="right">
+            <img src="../static/imgg.svg">
+
+
+        </div>
+   
+
+
+</body>
+
+</html>
